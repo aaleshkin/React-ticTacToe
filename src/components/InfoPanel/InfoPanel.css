@@ -1,0 +1,35 @@
+.status {
+	margin-top: 0.5em;
+	display: block;
+	text-align: center;
+	font-size: 2em;
+	width: 100%;
+}
+
+.buttons {
+	display: flex;
+	justify-content: space-around;
+}
+
+.button {
+	width: 200px;
+	padding: 0 1em;
+	height: 75px;
+	margin: 20px auto;
+	font-size: 25px;
+	border-radius: 20px;
+	background: coral;
+	color: #ffffff;
+	border: 0.16em solid white;
+	border-radius: 2em;
+	transition: 0.5s background;
+}
+
+.button:hover {
+	background: rgb(235, 108, 62);
+}
+
+.button:focus,
+.button:active {
+	outline: none;
+}

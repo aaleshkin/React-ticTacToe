@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Board from '../Board';
+import InfoPanel from '../InfoPanel';
 
 export default class App extends Component {
 	state = {
@@ -11,18 +12,13 @@ export default class App extends Component {
 
 	handleClick = i => {
 		this.setState(({ move, items, winner }) => {
-			if (items[move][i] || winner) {
-				console.log('existed');
-				console.log(items);
-				
-				return;
-			}
+			if (items[move][i] || winner) return;
 
 			const newItems = JSON.parse(JSON.stringify(items));
 			const newArr = JSON.parse(JSON.stringify(items[move]));
 			const newMove = move + 1;
 
-			newArr[i] = move % 2 === 0 ? '✕' : '○';
+			newArr[i] = move % 2 === 0 ? '❌' : '⭕';
 			newItems[newMove] = newArr;
 
 			return {
@@ -67,12 +63,12 @@ export default class App extends Component {
 
 		for (let i = 0; i < lines.length; i++) {
 			const [a, b, c] = lines[i];
+
 			if (
 				squares[a] &&
 				squares[a] === squares[b] &&
 				squares[a] === squares[c]
 			) {
-				console.log(squares[a]);
 				return this.setState({
 					winner: squares[a],
 				});
@@ -82,33 +78,22 @@ export default class App extends Component {
 	};
 
 	reset = () => {
-		this.setState(() => {
-			return {
-				items: [new Array(9).fill(null)],
-				winner: '',
-				move: 0,
-			};
+		this.setState({
+			items: [new Array(9).fill(null)],
+			winner: '',
+			move: 0,
 		});
 	};
 
 	render() {
 		const { move, items, winner } = this.state;
-		const status = winner ? <span>Winner is {winner}</span> : null;
 		const currentMove = items[move];
 
 		return (
 			<div className="app">
-				<h1 style={{ textAlign: 'center' }}>Tic-Tac-Toe</h1>
-				<span>{status}</span>
+				<h1 className="header-text">Tic-Tac-Toe</h1>
 				<Board items={currentMove} handleClick={this.handleClick} />
-				<div className="buttons">
-					<button className="revert-button button" onClick={this.history}>
-						Revert
-					</button>
-					<button className="reset-button button" onClick={this.reset}>
-						Reset Game
-					</button>
-				</div>
+				<InfoPanel winner={winner} history={this.history} reset={this.reset} />
 			</div>
 		);
 	}
