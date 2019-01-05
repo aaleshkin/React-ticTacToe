@@ -1,0 +1,15 @@
+.board {
+	display: flex;
+	flex-wrap: wrap;
+	width: 400px;
+	height: 400px;
+	margin: 0 auto;
+	border: 1px solid black;
+	border-radius: 25px;
+	padding: 20px;
+	background: #f1e767;
+	background: -moz-linear-gradient(top, #f1e767 0%, #feb645 100%);
+	background: -webkit-linear-gradient(top, #f1e767 0%, #feb645 100%);
+	background: linear-gradient(to bottom, #f1e767 0%, #feb645 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1e767', endColorstr='#feb645',GradientType=0 );
+}
